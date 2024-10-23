@@ -1,0 +1,19 @@
+- hosts: rnfront
+  become: yes
+  tasks:
+    - name: Install Git 
+      apt:
+        name: git
+        state: present
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Git Clone
+      git:
+        repo: "https://github.com/kksung/Ansible_Master.git"
+        dest: /home/ubuntu/
+        version: master
+
+
+
+
+
