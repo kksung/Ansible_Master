@@ -1,5 +1,5 @@
 - hosts: rnfront
-  become: yes
+  become: true
   tasks:
     - name: Install Git 
       apt:
@@ -7,13 +7,20 @@
         state: present
       when: ansible_distribution == "Ubuntu"
 
-    - name: Git Clone
-      git:
-        repo: "https://github.com/kksung/Ansible_Master.git"
-        dest: /home/ubuntu/
-        version: master
+    - name: apt update
+      apt:
+        update_cache: yes
 
+    - name: install nginx
+      apt:
+        name: nginx
+        state: present
 
+    - name: nginx start and enable
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
 
 
 
