@@ -1,12 +1,6 @@
 - hosts: rnfront
   become: true
   tasks:
-    - name: Install Git 
-      apt:
-        name: git
-        state: present
-      when: ansible_distribution == "Ubuntu"
-
     - name: apt update
       apt:
         update_cache: yes
